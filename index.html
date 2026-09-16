@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4b101f" />
+    <meta name="description" content="Document control, staff submissions and opportunities for schools and organisations." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>School Office Hub</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">SO</div>
+          <div><strong>School Office</strong><span>Operations hub</span></div>
+        </div>
+
+        <div class="workspace-card">
+          <div class="school-avatar">GH</div>
+          <div><strong>Gilead Heights</strong><span>2026/2027 Session</span></div>
+          <button aria-label="Switch workspace">⌄</button>
+        </div>
+
+        <nav aria-label="Main navigation">
+          <button class="nav-item active" data-page="overview"><span>⌂</span>Overview</button>
+          <button class="nav-item" data-page="submissions"><span>✓</span>Submissions <b>7</b></button>
+          <button class="nav-item" data-page="documents"><span>▤</span>Documents</button>
+          <button class="nav-item" data-page="people"><span>♙</span>People & roles</button>
+          <button class="nav-item" data-page="opportunities"><span>◉</span>Opportunities</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <button class="nav-item"><span>⚙</span>Settings</button>
+          <div class="profile-mini">
+            <div class="avatar">JK</div>
+            <div><strong>Kelvin Joseph</strong><span>Workspace owner</span></div>
+            <button aria-label="Profile menu">⋯</button>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <button class="mobile-menu" id="menuButton" aria-label="Open navigation">☰</button>
+          <div class="search"><span>⌕</span><input id="globalSearch" aria-label="Search" placeholder="Search documents, staff or requests" /></div>
+          <div class="top-actions">
+            <button class="icon-button" aria-label="Notifications">♢<i></i></button>
+            <button class="primary-button" id="newRequestButton"><span>＋</span>New request</button>
+          </div>
+        </header>
+
+        <section class="page active" id="overview-page">
+          <div class="page-heading">
+            <div><p class="eyebrow">Wednesday, 16 September</p><h1>Good morning, Kelvin.</h1><p>Here is what needs your attention across the school office.</p></div>
+            <button class="secondary-button" id="reportButton">Download report</button>
+          </div>
+
+          <div class="attention-banner">
+            <div class="spark">✦</div>
+            <div><strong>7 submissions need attention</strong><p>Three are overdue and four are waiting for academic review.</p></div>
+            <button data-go="submissions">Review submissions <span>→</span></button>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card"><div class="metric-icon wine">▣</div><div><span>Expected this week</span><strong>42</strong><small>Across 6 requirements</small></div></article>
+            <article class="metric-card"><div class="metric-icon gold">✓</div><div><span>Submitted</span><strong>31</strong><small class="positive">74% completion</small></div></article>
+            <article class="metric-card"><div class="metric-icon rose">◷</div><div><span>Awaiting review</span><strong>7</strong><small>4 submitted today</small></div></article>
+            <article class="metric-card"><div class="metric-icon dark">!</div><div><span>Overdue</span><strong>4</strong><small class="negative">Follow-up required</small></div></article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel submissions-panel">
+              <div class="panel-heading"><div><h2>Current requirements</h2><p>Track every submission without counting paper files.</p></div><button data-go="submissions">View all</button></div>
+              <div class="requirement-list" id="overviewRequirements"></div>
+            </section>
+
+            <aside class="panel activity-panel">
+              <div class="panel-heading"><div><h2>Recent activity</h2><p>Updates from your team</p></div></div>
+              <div class="activity-list">
+                <div class="activity"><div class="avatar burgundy">EA</div><p><strong>Emeka A.</strong> submitted JSS 2 Basic Technology lesson note.<span>12 minutes ago</span></p></div>
+                <div class="activity"><div class="avatar gold-bg">AO</div><p><strong>Academic Office</strong> approved 8 examination questions.<span>48 minutes ago</span></p></div>
+                <div class="activity"><div class="avatar charcoal">BI</div><p><strong>Blessing I.</strong> uploaded her staff credentials.<span>2 hours ago</span></p></div>
+                <div class="activity"><div class="avatar soft">MO</div><p><strong>Mary O.</strong> returned a lesson note for correction.<span>Yesterday</span></p></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="page" id="submissions-page">
+          <div class="page-heading"><div><p class="eyebrow">Academic workflow</p><h1>Submissions</h1><p>Request, receive, review and approve staff documents.</p></div><button class="primary-button open-request">＋ New request</button></div>
+          <div class="toolbar"><div class="filter-tabs" id="statusFilters"><button class="active" data-filter="all">All</button><button data-filter="review">Awaiting review</button><button data-filter="overdue">Overdue</button><button data-filter="approved">Approved</button></div></div>
+          <div class="panel table-panel"><div class="submission-table" id="submissionTable"></div></div>
+        </section>
+
+        <section class="page" id="documents-page">
+          <div class="page-heading"><div><p class="eyebrow">Digital filing office</p><h1>Documents</h1><p>Find official records by category, owner, term or status.</p></div><button class="primary-button" id="uploadButton">＋ Upload document</button></div>
+          <div class="folder-grid" id="folderGrid"></div>
+          <div class="panel"><div class="panel-heading"><div><h2>Recently updated</h2><p>Your latest school records</p></div></div><div class="document-list" id="documentList"></div></div>
+        </section>
+
+        <section class="page" id="people-page">
+          <div class="page-heading"><div><p class="eyebrow">Workspace access</p><h1>People & roles</h1><p>Control what each staff member can view, submit or approve.</p></div><button class="primary-button" id="inviteButton">＋ Invite member</button></div>
+          <div class="role-summary"><div><strong>28</strong><span>Workspace members</span></div><div><strong>4</strong><span>Reviewers</span></div><div><strong>3</strong><span>Administrators</span></div></div>
+          <div class="people-grid" id="peopleGrid"></div>
+        </section>
+
+        <section class="page" id="opportunities-page">
+          <div class="page-heading"><div><p class="eyebrow">Public network</p><h1>Opportunity Network</h1><p>Connect verified schools, professionals, service providers and partners.</p></div><button class="primary-button" id="postOpportunityButton">＋ Post opportunity</button></div>
+          <div class="network-banner"><div><span class="network-label">Separate from your private workspace</span><h2>Find the right people beyond your school.</h2><p>Your internal files remain private. Only opportunities you publish appear in the network.</p></div><div class="network-stat"><strong>124</strong><span>verified organisations</span></div></div>
+          <div class="opportunity-layout"><div class="opportunity-feed" id="opportunityFeed"></div><aside class="panel network-aside"><h3>Browse by type</h3><button>Teaching roles <span>42</span></button><button>Administrative roles <span>18</span></button><button>Freelance projects <span>31</span></button><button>Vendors & suppliers <span>24</span></button><button>Partnerships <span>9</span></button></aside></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+        <div class="modal-icon">▤</div><p class="eyebrow">Submission workflow</p><h2 id="modalTitle">Create a new request</h2><p>Tell staff exactly what to submit and when it is due.</p>
+        <form id="requestForm">
+          <label>Request title<input name="title" required placeholder="e.g. Week 5 lesson notes" /></label>
+          <div class="form-row"><label>Document type<select name="type"><option>Lesson note</option><option>Examination question</option><option>Weekly report</option><option>Staff document</option></select></label><label>Due date<input name="due" type="date" required /></label></div>
+          <label>Assign to<select name="assignee"><option>All teaching staff</option><option>Primary teachers</option><option>Secondary teachers</option><option>Academic coordinators</option></select></label>
+          <div class="form-actions"><button type="button" class="secondary-button" id="cancelModal">Cancel</button><button type="submit" class="primary-button">Create request</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
